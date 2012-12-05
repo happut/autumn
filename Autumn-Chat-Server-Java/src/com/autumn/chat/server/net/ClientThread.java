@@ -2,6 +2,8 @@ package com.autumn.chat.server.net;
 
 import java.net.Socket;
 
+import com.autumn.chat.server.ui.MainWindow;
+
 /** 
  * @author Happut-WangFei
  * @version 
@@ -11,6 +13,7 @@ public class ClientThread extends Thread{
 	private Socket sock;
 	public ClientThread(Socket socket){
 		this.sock = socket;
+		this.start();
 	}
 	public Socket getSock() {
 		return sock;
@@ -19,6 +22,9 @@ public class ClientThread extends Thread{
 		this.sock = sock;
 	}
 	
-	
+	@Override
+	public void run(){
+		MainWindow.getInstance().getInfo().setText("1");
+	}
 }
   

@@ -10,6 +10,8 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.stream.events.StartDocument;
+
 import com.autumn.chat.server.dataModule.AutumnPacket;
 
 /** 
@@ -22,13 +24,18 @@ public class ServerThread extends Thread{
 	private int port;
 	private ServerSocket ss;
 	private List<ClientThread> clients;
-	
+	boolean flag;	
 	public ServerThread(int listenPort) {
 		clients = new ArrayList<ClientThread>();
+		flag = true;
+	}
+	
+	@Override
+	public void run(){
 		try {
 			// 初始化套接字
 			ss = new ServerSocket(getPort());
-			while (true) {
+			while (flag) {
 				clients.add(new ClientThread(ss.accept()));
 			}
 		} catch (SocketException e) {
@@ -37,8 +44,7 @@ public class ServerThread extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("接收错误");
-		}
-
+		}		
 	}
 
 	public void setPort(int port) {
@@ -55,6 +61,10 @@ public class ServerThread extends Thread{
 	
 	public void dealMessage(AutumnPacket autumnPacket) {
 		System.out.println("收到的消息为："+autumnPacket.getMessage());
+	}
+	
+	public void stopServer(){
+		flag = false;
 	}
 }
   
