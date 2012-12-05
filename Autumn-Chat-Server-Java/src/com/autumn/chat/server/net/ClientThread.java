@@ -24,7 +24,7 @@ public class ClientThread extends Thread{
 	
 	@Override
 	public void run(){
-		MainWindow.getInstance().getInfo().setText("1");
+		MainWindow.getInstance().addInfo("1");
 	}
 }
   

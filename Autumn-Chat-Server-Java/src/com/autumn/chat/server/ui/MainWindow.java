@@ -1,14 +1,17 @@
 package com.autumn.chat.server.ui;    
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.autumn.chat.server.net.ServerThread;
@@ -19,6 +22,11 @@ import com.autumn.chat.server.net.ServerThread;
  * @time 2012-12-5 下午09:02:01
  */
 public class MainWindow extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static MainWindow mainWindow;
 	
 	private JButton startButton;
@@ -27,10 +35,17 @@ public class MainWindow extends JFrame{
 	private Container container;
 	private JTextField portText;
 	
-	private JLabel info;
+	private JTextArea infoArea;
+	private JScrollPane infoScrollPane;
+	private JPanel infoPanel;
 	
-	public JLabel getInfo() {
-		return info;
+	
+	/**
+	 * 增加消息到消息框
+	 * @param message
+	 */
+	public void addInfo(String message) {
+		infoArea.setText(infoArea.getText()+"\n"+message);
 	}
 	private JPanel mainPanel;
 	
@@ -38,12 +53,17 @@ public class MainWindow extends JFrame{
 		mainWindow = this;
 		
 		init();
-		container.add(mainPanel);
+		container.add(mainPanel,"North");
+		container.add(infoPanel,"Center");
 		setVisible(true);
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * 获取窗口实例
+	 * @return 返回窗口类
+	 */
 	public static MainWindow getInstance() {
 		if (mainWindow == null) {
 			mainWindow = new MainWindow();
@@ -53,7 +73,7 @@ public class MainWindow extends JFrame{
 
 	private void init() {
 		portText = new JTextField(10);
-		info = new JLabel("1111");
+		infoArea = new JTextArea();
 		
 		startButton = new JButton("打开服务器");
 		startButton.addActionListener(new ActionListener() {
@@ -83,6 +103,15 @@ public class MainWindow extends JFrame{
 		mainPanel.add(startButton);
 		mainPanel.add(stopButton);
 		mainPanel.add(portText);
+		mainPanel.setBorder(BorderFactory.createTitledBorder("主功能区"));
+		
+		infoPanel = new JPanel();
+		infoScrollPane = new JScrollPane(infoArea);
+		infoScrollPane.setPreferredSize(new Dimension(300, 200));
+		infoArea.setText("sss");
+		infoArea.setSize(300, 200);
+		infoPanel.add(infoScrollPane);
+		infoPanel.setBorder(BorderFactory.createTitledBorder("消息区"));
 	}
 	public static void main(String[] args) {
 		new MainWindow();
