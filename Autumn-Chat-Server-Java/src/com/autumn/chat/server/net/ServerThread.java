@@ -17,10 +17,10 @@ public class ServerThread extends Thread{
 	private String ip;
 	private int port;
 	private ServerSocket ss;
-	private List<ClientThread> clients;
+	private List<ClientKeeper> clients;
 	boolean flag;	
 	public ServerThread(int listenPort) {
-		clients = new ArrayList<ClientThread>();
+		clients = new ArrayList<ClientKeeper>();
 		flag = true;
 	}
 	
@@ -30,7 +30,7 @@ public class ServerThread extends Thread{
 			// ³õÊ¼»¯Ì×½Ó×Ö
 			ss = new ServerSocket(getPort());
 			while (flag) {
-				clients.add(new ClientThread(ss.accept()));
+				clients.add(new ClientKeeper(ss.accept()));
 			}
 		} catch (SocketException e) {
 			e.printStackTrace();

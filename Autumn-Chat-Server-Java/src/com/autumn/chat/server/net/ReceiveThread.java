@@ -1,11 +1,8 @@
 package com.autumn.chat.server.net;    
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +16,11 @@ import com.autumn.chat.server.dataModule.AutumnPacket;
  */
 public class ReceiveThread implements Runnable{
 	private List<AutumnPacket> waitingForReadAutumnPackets;
-	private ClientThread clientThread;
+	private ClientKeeper clientKeeper;
 	private boolean flag=false;
-	public ReceiveThread(ClientThread clientThread){
+	public ReceiveThread(ClientKeeper clientKeeper){
 		waitingForReadAutumnPackets = new ArrayList<AutumnPacket>();
-		this.clientThread = clientThread;
+		this.clientKeeper = clientKeeper;
 		
 		
 		Thread t = new Thread(this);
@@ -31,10 +28,10 @@ public class ReceiveThread implements Runnable{
 	}
 	public void run() {
 		while (flag) {
-			BufferedInputStream netOut;
+			BufferedInputStream netIn;
 			try {
-				netOut = new BufferedInputStream(clientThread.getSock().getInputStream());
-				ObjectInputStream oos = new ObjectInputStream(netOut);
+				netIn = new BufferedInputStream(clientKeeper.getSock().getInputStream());
+				ObjectInputStream oos = new ObjectInputStream(netIn);
 				waitingForReadAutumnPackets.add((AutumnPacket) oos.readObject());
 			} catch (IOException e) {
 				e.printStackTrace();
