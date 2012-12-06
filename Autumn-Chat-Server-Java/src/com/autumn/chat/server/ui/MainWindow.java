@@ -23,7 +23,7 @@ import com.autumn.chat.server.net.ServerThread;
  */
 public class MainWindow extends JFrame{
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = 1L;
 
