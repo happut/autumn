@@ -1,4 +1,4 @@
-package com.autumn.chat.server.dataModule;    
+package com.autumn.chat.server.dataModule;
 
 import java.io.Serializable;
 
@@ -9,9 +9,9 @@ import java.io.Serializable;
  */
 /**
  * 系统底层类-信息传输父类
- *
+ * 
  */
-public class AutumnPacket implements Serializable{
+public class AutumnPacket implements Serializable {
 	/**
 	 * 
 	 */
@@ -28,24 +28,48 @@ public class AutumnPacket implements Serializable{
 	 * 消息内容
 	 */
 	private String Message;
-	
+
+	/**
+	 * 消息类型
+	 */
+	private int type;
+
+	/**
+	 * @return the type
+	 */
+	public int getType() {
+		return type;
+	}
+
+	/**
+	 * @param type
+	 *            the type to set
+	 */
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public String getIp() {
 		return ip;
 	}
+
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getMessage() {
 		return Message;
 	}
+
 	public void setMessage(String message) {
 		Message = message;
 	}
 }
-  
