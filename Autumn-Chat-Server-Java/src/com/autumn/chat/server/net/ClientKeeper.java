@@ -13,6 +13,7 @@ public class ClientKeeper extends Thread{
 	private Socket sock;
 	public ClientKeeper(Socket socket){
 		this.sock = socket;
+		MainWindow.getInstance().addInfo("收到消息");
 		this.start();
 	}
 	public Socket getSock() {

@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -45,7 +47,7 @@ public class MainWindow extends JFrame{
 	 * @param message
 	 */
 	public void addInfo(String message) {
-		infoArea.setText(infoArea.getText()+"\n"+message);
+		infoArea.setText(infoArea.getText()+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+":\n         "+message+"\n");
 	}
 	private JPanel mainPanel;
 	
@@ -53,11 +55,20 @@ public class MainWindow extends JFrame{
 		mainWindow = this;
 		
 		init();
+		
 		container.add(mainPanel,"North");
 		container.add(infoPanel,"Center");
+		
+		windowOption();
+
+	}
+	/**
+	 * 设定窗口参数
+	 */
+	private void windowOption() {
 		setVisible(true);
 		pack();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 
 	/**

@@ -16,7 +16,7 @@ import com.autumn.chat.server.dataModule.AutumnPacket;
 public class SendThread implements Runnable{
 	private List<AutumnPacket> waitingForSendAutumnPackets;
 	private ClientKeeper clientKeeper;
-	private boolean flag=false;
+	private boolean flag=true;
 	public SendThread(ClientKeeper clientKeeper){
 		waitingForSendAutumnPackets = new ArrayList<AutumnPacket>();
 		this.clientKeeper = clientKeeper;

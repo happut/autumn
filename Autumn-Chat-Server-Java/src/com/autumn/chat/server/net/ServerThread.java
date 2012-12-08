@@ -18,10 +18,10 @@ public class ServerThread extends Thread{
 	private int port;
 	private ServerSocket ss;
 	private List<ClientKeeper> clients;
-	boolean flag;	
+	boolean flag=true;	
 	public ServerThread(int listenPort) {
 		clients = new ArrayList<ClientKeeper>();
-		flag = true;
+		port = listenPort;
 	}
 	
 	@Override
@@ -38,7 +38,15 @@ public class ServerThread extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("接收错误");
-		}		
+		}finally{
+			try {
+				ss.close();
+				System.out.println("socket已关闭");
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("关闭socket出错");
+			}
+		}
 	}
 
 	public void setPort(int port) {
