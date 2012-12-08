@@ -46,7 +46,7 @@ public class MainWindow extends JFrame{
 	 * 增加消息到消息框
 	 * @param message
 	 */
-	public void addInfo(String message) {
+	public synchronized void addInfo(String message) {
 		infoArea.setText(infoArea.getText()+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+":\n         "+message+"\n");
 	}
 	private JPanel mainPanel;

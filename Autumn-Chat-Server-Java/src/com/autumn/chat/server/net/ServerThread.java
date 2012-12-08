@@ -6,7 +6,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.autumn.chat.server.dataModule.AutumnPacket;
+import com.autumn.chat.dataModule.AutumnPacket;
 
 /** 
  * @author Happut-WangFei
@@ -39,13 +39,6 @@ public class ServerThread extends Thread{
 			e.printStackTrace();
 			System.out.println("接收错误");
 		}finally{
-			try {
-				ss.close();
-				System.out.println("socket已关闭");
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.println("关闭socket出错");
-			}
 		}
 	}
 

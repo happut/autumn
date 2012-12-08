@@ -1,4 +1,4 @@
-package com.autumn.chat.client.dataModule;
+package com.autumn.chat.dataModule;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class AutumnPacket implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4048622577800201617L;
 	/**
 	 * ipµÿ÷∑
 	 */
