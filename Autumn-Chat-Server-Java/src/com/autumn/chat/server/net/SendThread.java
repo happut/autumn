@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.autumn.chat.dataModule.AutumnPacket;
+import com.autumn.chat.server.ui.MainWindow;
 
 /** 
  * @author Happut-WangFei
@@ -24,6 +25,7 @@ public class SendThread implements Runnable{
 		this.clientKeeper = clientKeeper;
 		socket = clientKeeper.getSock();
 		this.flag = flag;
+		MainWindow.getInstance().addInfo(socket.getInetAddress().getHostAddress(),"启动"+socket.getInetAddress().getHostAddress()+"发送线程");
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -57,6 +59,10 @@ public class SendThread implements Runnable{
 	
 	public void send(AutumnPacket autumnPacket){
 		getPackets().add(autumnPacket);
+	}
+	
+	public void stop(){
+		this.flag = false;
 	}
 	
 }

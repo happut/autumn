@@ -16,6 +16,7 @@ public class ClientKeeper{
 	private SendThread send;
 	public ClientKeeper(Socket socket){
 		this.sock = socket;
+		MainWindow.getInstance().addInfo(sock.getInetAddress().getHostAddress(),"收到来自"+sock.getInetAddress().getHostAddress()+"的消息！");
 		rec = new ReceiveThread(this,true);
 		send = new SendThread(this,true);
 		//MainWindow.getInstance().addInfo("收到消息");
@@ -28,6 +29,10 @@ public class ClientKeeper{
 	}
 	public void sendPacket(AutumnPacket autumnPacket){
 		send.send(autumnPacket);
+	}
+	public void stopClient(){
+		rec.stop();
+		send.stop();
 	}
 }
   

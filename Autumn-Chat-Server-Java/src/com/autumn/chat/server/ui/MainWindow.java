@@ -46,8 +46,8 @@ public class MainWindow extends JFrame{
 	 * 增加消息到消息框
 	 * @param message
 	 */
-	public synchronized void addInfo(String message) {
-		infoArea.setText(infoArea.getText()+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+":\n         "+message+"\n");
+	public synchronized void addInfo(String ip,String message) {
+		infoArea.setText(infoArea.getText()+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"("+ip+"):"+message+"\n");
 	}
 	private JPanel mainPanel;
 	
@@ -118,14 +118,18 @@ public class MainWindow extends JFrame{
 		
 		infoPanel = new JPanel();
 		infoScrollPane = new JScrollPane(infoArea);
-		infoScrollPane.setPreferredSize(new Dimension(300, 200));
-		infoArea.setText("sss");
+		infoScrollPane.setPreferredSize(new Dimension(500, 200));
 		infoArea.setSize(300, 200);
 		infoPanel.add(infoScrollPane);
 		infoPanel.setBorder(BorderFactory.createTitledBorder("消息区"));
 	}
 	public static void main(String[] args) {
 		new MainWindow();
+	}
+	
+	
+	public ServerThread getServerThread(){
+		return serverThread;
 	}
 }
   

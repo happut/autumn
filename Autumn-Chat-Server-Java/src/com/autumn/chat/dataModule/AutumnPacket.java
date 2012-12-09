@@ -34,6 +34,13 @@ public class AutumnPacket implements Serializable {
 	 */
 	private int type;
 
+	public AutumnPacket(String id,String ip,String message,int type){
+		this.id = id;
+		this.ip = ip;
+		this.Message = message;
+		this.type = type;
+	}
+	
 	/**
 	 * @return the type
 	 */
