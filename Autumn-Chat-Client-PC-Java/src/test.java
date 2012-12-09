@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import com.autumn.chat.dataModule.AutumnPacket;
-import com.sun.java_cup.internal.runtime.Scanner;
-import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
 
 
 public class test {
