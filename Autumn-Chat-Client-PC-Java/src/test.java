@@ -16,17 +16,16 @@ public class test {
 		autumnPacket.setType(1);
 		autumnPacket.setMessage("aaaaa");
 		Socket socket = new Socket("127.0.0.1", 11111);	
-OutputStream os = socket.getOutputStream();
+		OutputStream os = socket.getOutputStream();
+		BufferedOutputStream netOut = new BufferedOutputStream(os);
+		ObjectOutputStream oos = new ObjectOutputStream(netOut);
 		int i=0;
 		while(i++<10){
-		
-			BufferedOutputStream netOut = new BufferedOutputStream(os);
-			ObjectOutputStream oos = new ObjectOutputStream(netOut);
 			oos.writeObject(autumnPacket);
-			oos.close();
-			netOut.close();
-		
+			oos.flush();
 		}
+		oos.close();
+		netOut.close();
 		os.close();
 		socket.close();
 	}
