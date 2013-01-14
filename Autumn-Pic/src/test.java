@@ -1,3 +1,5 @@
+import com.autumn.pic.merge.MainFrame;
+
 /*
  * @(#)test.java 2013-1-14 обнГ01:03:33
  * Autumn-Pic
@@ -12,5 +14,7 @@
  *
  */
 public class test {
-
+    public static void main(String[] args) {
+        new MainFrame();
+    }
 }
